@@ -10,7 +10,6 @@
   "author": "Jim Pick (@jimpick)",
   "license": "MIT",
   "dependencies": {
-    "delay": "^4.1.0",
     "peer-base": "peer-base/peer-base#master"
   }
 }
