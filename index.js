@@ -26,7 +26,7 @@ async function run () {
 }
 
 async function fetchPad (name, publicKey) {
-  const app = PeerBase('peer-pad/2', {
+  const app = PeerBase('peer-pad-jim-staging-3', {
     ipfs: {
       repo: new IPFSRepo('ipfs', {
         lock: 'memory',
@@ -37,7 +37,7 @@ async function fetchPad (name, publicKey) {
           datastore: MemoryDatastore
         }
       }),
-      swarm: ['/dns4/ws-star1.par.dwebops.pub/tcp/443/wss/p2p-websocket-star'],
+      swarm: ['/dns4/rendezvous.jimpick.com/tcp/9091/wss/p2p-websocket-star'],
       bootstrap: [
         '/dns4/ams-1.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLer265NRgSp2LA3dPaeykiS1J6DifTC88f5uVQKNAd',
         '/dns4/lon-1.bootstrap.libp2p.io/tcp/443/wss/ipfs/QmSoLMeWqB7YGVLJN3pNLQpmmEk35v6wYtsMGLzSr5QBU3',
