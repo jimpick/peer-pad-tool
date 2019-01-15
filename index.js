@@ -63,6 +63,17 @@ async function fetchPad (name, publicKey) {
       const content = collaboration.shared.value().join('')
       resolve(content)
     })
+    let content = collaboration.shared.value().join('')
+    if (content && content.length > 0) return resolve(content)
+    collaboration.on('state changed', checkContent)
+
+    function checkContent () {
+      content = titleCollab.shared.value().join('')
+      if (content && content.length > 0) {
+        collaboration.off('state changed', checkContent)
+        resolve(content)
+      }
+    }
   })
 
   const fetchTitle = () => new Promise(resolve => {
@@ -71,7 +82,7 @@ async function fetchPad (name, publicKey) {
     titleCollab.on('state changed', checkTitle)
 
     function checkTitle () {
-      const title = titleCollab.shared.value().join('')
+      title = titleCollab.shared.value().join('')
       if (title && title.length > 0) {
         titleCollab.off('state changed', checkTitle)
         resolve(title)
