@@ -59,16 +59,12 @@ async function fetchPad (name, publicKey) {
   const titleCollab = await collaboration.sub('title', 'rga')
 
   const fetchContent = () => new Promise(resolve => {
-    collaboration.once('state changed', () => {
-      const content = collaboration.shared.value().join('')
-      resolve(content)
-    })
     let content = collaboration.shared.value().join('')
     if (content && content.length > 0) return resolve(content)
     collaboration.on('state changed', checkContent)
 
     function checkContent () {
-      content = titleCollab.shared.value().join('')
+      content = collaboration.shared.value().join('')
       if (content && content.length > 0) {
         collaboration.off('state changed', checkContent)
         resolve(content)
